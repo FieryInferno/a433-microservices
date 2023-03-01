@@ -1,17 +1,38 @@
+# Ini adalah schema version yang akan digunakan oleh file docker-compose.yml
 version: "3.8"
+
+# Ini adalah daftar services yang akan digunakan
 services:
+
+  # Service pertama adalah item-app yang diambil dari image yang sudah disimpan di docker registry
   item-app:
+
+    # Ini adalah nama image yang sudah disimpan di docker registry dan akan dipull
     image: "bagassetia/item-app:v1"
+
+    # Ini adalah command untuk menjalankan aplikasi di dalam container item-app
     command: sh -c "npm install && npm start"
+
+    # Ini adalah port mapping yang memungkinkan kita untuk menggunakan port 80
     ports: 
       - 80:8080
+
+    # Ini adalah working directory yang akan dipakai oleh aplikasi
     working_dir: /app
     volumes:
       - ./:/app
+
+    # Ini adalah perintah untuk menjalankan service item-app ketika item-db sudah selesai
     depends_on:
       - item-db
+
+  # Ini adalah service kedua yang akan digunakan
   item-db:
+
+    # Service ini menggunakan image mongo:3 yang akan di pull ke local
     image: "mongo:3"
+
+    # Service ini menggunakan volume app-db
     volumes:
       - app-db:/data/db
 volumes:
