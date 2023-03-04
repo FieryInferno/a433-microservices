@@ -9,16 +9,11 @@ services:
 
     # Ini adalah nama image yang sudah disimpan di docker registry dan akan dipull
     image: "bagassetia/item-app:v1"
-
-    # Ini adalah command untuk menjalankan aplikasi di dalam container item-app
-    command: sh -c "npm install && npm start"
-
+  
     # Ini adalah port mapping yang memungkinkan kita untuk menggunakan port 80
     ports: 
       - 80:8080
 
-    # Ini adalah working directory yang akan dipakai oleh aplikasi
-    working_dir: /app
     volumes:
       - ./:/app
 
