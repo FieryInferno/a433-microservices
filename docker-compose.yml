@@ -25,6 +25,14 @@ services:
     # Ini adalah perintah untuk menjalankan service item-app ketika item-db sudah selesai
     depends_on:
       - item-db
+    
+    # Ini adalah perintah untuk restart policy
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
 
   # Ini adalah service kedua yang akan digunakan
   item-db:
@@ -35,5 +43,13 @@ services:
     # Service ini menggunakan volume app-db
     volumes:
       - app-db:/data/db
+
+    # Ini adalah perintah untuk restart policy
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
 volumes:
   app-db:
