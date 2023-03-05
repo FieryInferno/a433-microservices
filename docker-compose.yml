@@ -14,9 +14,6 @@ services:
     ports: 
       - 80:8080
 
-    volumes:
-      - ./:/app
-
     # Ini adalah perintah untuk menjalankan service item-app ketika item-db sudah selesai
     depends_on:
       - item-db
